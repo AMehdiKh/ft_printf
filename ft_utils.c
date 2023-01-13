@@ -27,10 +27,10 @@ void	ft_putstr(char *s, t_printf *tab)
 void	ft_print_char(char c, t_printf *tab)
 {
 	tab->width += (tab->width == 0);
-	if (tab->width && !tab->minus)
+	if (!tab->minus)
 		tab->len += ft_putchar(' ', --tab->width);
 	tab->len += write(1, &c, 1);
-	if (tab->width && tab->minus)
+	if (tab->minus)
 		tab->len += ft_putchar(' ', --tab->width);
 }
 
