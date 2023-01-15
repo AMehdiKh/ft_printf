@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-void	ft_putchar(char *c, int len, t_printf *tab)
+void	ft_putchar(char c, int len, t_printf *tab)
 {
 	while (len--)
 		tab->len += write(1, &c, 1);
 }
 
-void	ft_putstr(char *s, t_printf *tab)
+void	ft_putstr(char *s, int len, t_printf *tab)
 {
 	while (len--)
 		tab->len += write(1, s++, 1);
@@ -28,10 +28,10 @@ void	ft_print_char(char c, t_printf *tab)
 {
 	tab->width += (tab->width == 0);
 	if (!tab->minus)
-		tab->len += ft_putchar(' ', --tab->width);
-	tab->len += write(1, &c, 1);
+		ft_putchar(' ', --tab->width, tab);
+	ft_putchar(c, 1, tab);
 	if (tab->minus)
-		tab->len += ft_putchar(' ', --tab->width);
+		ft_putchar(' ', --tab->width, tab);
 }
 
 void	ft_print_str(char *s, t_printf *tab)
@@ -59,18 +59,29 @@ void	ft_putnbr(long n, t_printf *tab)
 	ft_putchar((n % 10) + 48, 1, tab);
 }
 
-void	ft_puthex(unsigned long n, t_printf *tab, char c)
+void	ft_printf_ptr(unsigned long n, t_printf *tab)
 {
-	if (c == 'x' || c == 'p')
+	if (tab->width > 14)
+		tab->width -= 14;
+	else
+		tab->width = 0;
+	if (!tab->minus)
 	{
-		if (n >= 16)
-			ft_puthex(n / 16, tab, c);
-		tab->len += write(1, &"0123456789abcdef"[n % 16], 1);
+		ft_putstr("0x", 2, tab);
+		
+		ft_putchar(' ', tab->width, tab);
 	}
-	if (c == 'X')
+	else
 	{
-		if (n >= 16)
-			ft_puthex(n / 16, tab, c);
-		tab->len += write(1, &"0123456789ABCDEF"[n % 16], 1);
+		ft_putchar(' ', tab->width, tab);
+		
+		ft_putstr("0x", 2, tab);
 	}
+}
+
+void	ft_puthex(unsigned long n, char *hex, t_printf *tab)
+{
+	if (n >= 16)
+		ft_puthex(n / 16, tab, c);
+	tab->len += write(1, str[n % 16], 1);
 }
