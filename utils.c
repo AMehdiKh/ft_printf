@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 02:40:56 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/13 03:07:07 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/21 23:15:35 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_print_str(char *s, t_printf *tab)
 {
 	if (!s)
 		s = "(null)";
-	if (!tab->dot || (tab->prc >= (int)ft_strlen(s)))
+	if (!tab->dot || (tab->prc > (int)ft_strlen(s)))
 		tab->prc = ft_strlen(s);
 	if (!tab->minus && ((tab->width - tab->prc) > 0))
 		ft_putchar(' ', tab->width - tab->prc, tab);
@@ -59,29 +59,7 @@ void	ft_putnbr(long n, t_printf *tab)
 	ft_putchar((n % 10) + 48, 1, tab);
 }
 
-void	ft_printf_ptr(unsigned long n, t_printf *tab)
+int	ft_abs(int n)
 {
-	if (tab->width > 14)
-		tab->width -= 14;
-	else
-		tab->width = 0;
-	if (!tab->minus)
-	{
-		ft_putstr("0x", 2, tab);
-		
-		ft_putchar(' ', tab->width, tab);
-	}
-	else
-	{
-		ft_putchar(' ', tab->width, tab);
-		
-		ft_putstr("0x", 2, tab);
-	}
-}
-
-void	ft_puthex(unsigned long n, char *hex, t_printf *tab)
-{
-	if (n >= 16)
-		ft_puthex(n / 16, tab, c);
-	tab->len += write(1, str[n % 16], 1);
+	return ((-(n < 0) * n) + (n * (n > 0)));
 }

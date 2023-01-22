@@ -4,7 +4,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c ft_utils.c
+SRCS = ft_printf.c utils.c print_hex.c ft_litoa.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -13,6 +13,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) rcs $@ $?
+
+bonus: all
 
 clean:
 	rm -f $(OBJS)
