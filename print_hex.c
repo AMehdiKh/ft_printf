@@ -6,7 +6,7 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:33:01 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 04:48:46 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/22 06:10:57 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ft_hextoa(unsigned long n, t_printf *tab)
 	if (tab->spec == 'X')
 		hex = "0123456789ABCDEF";
 	str = malloc(hexlen + 1);
+	if (!str)
+		return (NULL);
 	if (tab->hash && (tab->spec != 'p') && n)
 	{
 		str[0] = '0';

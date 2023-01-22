@@ -6,7 +6,7 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:47:09 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/21 23:40:09 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/22 09:39:32 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ const char	*ft_check_spec(const char *format, t_printf *tab)
 		ft_print_char(va_arg(tab->ap, int), tab);
 	else if (*format == 's')
 		ft_print_str(va_arg(tab->ap, char *), tab);
-	else if (*format == 'x' || *format == 'X')
-		ft_print_hex(va_arg(tab->ap, unsigned int), tab);
 	else if (*format == 'p')
 		ft_print_ptr(va_arg(tab->ap, unsigned long), tab);
+	else if (*format == 'x' || *format == 'X')
+		ft_print_hex(va_arg(tab->ap, unsigned int), tab);
 	else if (*format == 'd' || *format == 'i')
-		ft_putnbr((long)va_arg(tab->ap, int), tab);
+		ft_print_nbr(va_arg(tab->ap, int), tab);
 	else if (*format == 'u')
-		ft_putnbr((long)va_arg(tab->ap, unsigned int), tab);
+		ft_print_nbr(va_arg(tab->ap, unsigned int), tab);
 	++format;
 	return (format);
 }

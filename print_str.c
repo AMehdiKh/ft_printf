@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 02:40:56 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/21 23:15:35 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:25:15 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,4 @@ void	ft_print_str(char *s, t_printf *tab)
 	ft_putstr(s, tab->prc, tab);
 	if (tab->minus && ((tab->width - tab->prc) > 0))
 		ft_putchar(' ', tab->width - tab->prc, tab);
-}
-
-void	ft_putnbr(long n, t_printf *tab)
-{
-	if (n < 0)
-	{
-		ft_putchar('-', 1, tab);
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr(n / 10, tab);
-	ft_putchar((n % 10) + 48, 1, tab);
-}
-
-int	ft_abs(int n)
-{
-	return ((-(n < 0) * n) + (n * (n > 0)));
 }
