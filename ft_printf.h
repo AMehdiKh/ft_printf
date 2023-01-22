@@ -6,7 +6,7 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:39:04 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 09:38:03 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/22 13:36:51 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		ft_print_ptr(unsigned long n, t_printf *tab);
 void		ft_print_hex(unsigned int n, t_printf *tab);
 void		ft_check_hex(char	*hex, int len, t_printf *tab);
 
-void		ft_check_nbr(char *nbr, int len, int neg, t_printf *tab);
+void		ft_check_nbr(char *nbr, int len, int sign, t_printf *tab);
 void		ft_print_nbr(long n, t_printf *tab);
 
 char		*ft_strchr(const char *s, int c);
