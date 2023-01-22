@@ -6,13 +6,23 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:47:09 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 09:39:32 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:30:12 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_zero_tab(t_printf *tab)
+int	ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (0);
+	while (*s)
+		if (*s++ == (char)c)
+			return (1);
+	return (0);
+}
+
+void	ft_init_tab(t_printf *tab)
 {
 	tab->plus = 0;
 	tab->minus = 0;
@@ -48,7 +58,7 @@ const char	*ft_check_spec(const char *format, t_printf *tab)
 
 const char	*ft_check_flag(const char *format, t_printf *tab)
 {
-	ft_zero_tab(tab);
+	ft_init_tab(tab);
 	while (!ft_strchr("Xxpdscui%", *format) && *format)
 	{
 		if (*format == ' ')

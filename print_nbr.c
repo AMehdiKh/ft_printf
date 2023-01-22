@@ -6,11 +6,16 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 06:13:03 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 13:59:19 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:29:19 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
 
 int	ft_nbrlen(long n, t_printf *tab)
 {
@@ -101,9 +106,4 @@ void	ft_check_nbr(char *nbr, int len, int sign, t_printf *tab)
 		ft_putchar('0', tab->prc, tab);
 		ft_putstr(nbr + sign, len - sign, tab);
 	}
-}
-
-int	ft_abs(int n)
-{
-	return ((-(n < 0) * n) + (n + (n > 0)));
 }
