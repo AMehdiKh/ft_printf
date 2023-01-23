@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:47:09 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 14:30:12 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/23 06:23:23 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_strchr(const char *s, int c)
 {
@@ -24,15 +24,15 @@ int	ft_strchr(const char *s, int c)
 
 void	ft_init_tab(t_printf *tab)
 {
-	tab->plus = 0;
-	tab->minus = 0;
-	tab->zero = 0;
 	tab->width = 0;
 	tab->space = 0;
-	tab->dot = 0;
+	tab->minus = 0;
+	tab->zero = 0;
 	tab->hash = 0;
-	tab->prc = 0;
+	tab->plus = 0;
 	tab->spec = 0;
+	tab->dot = 0;
+	tab->prc = 0;
 }
 
 const char	*ft_check_spec(const char *format, t_printf *tab)
@@ -61,21 +61,21 @@ const char	*ft_check_flag(const char *format, t_printf *tab)
 	ft_init_tab(tab);
 	while (!ft_strchr("Xxpdscui%", *format) && *format)
 	{
-		if (*format == ' ')
-			tab->space = 1;
-		if (*format == '-')
-			tab->minus = 1;
-		if (*format == '+')
-			tab->plus = 1;
-		if (*format == '0' && !tab->width)
+		if (*format == '0' && !tab->width && !tab->dot)
 			tab->zero = 1;
-		if (*format == '#')
+		else if (*format == ' ')
+			tab->space = 1;
+		else if (*format == '-')
+			tab->minus = 1;
+		else if (*format == '+')
+			tab->plus = 1;
+		else if (*format == '#')
 			tab->hash = 2;
-		if (*format == '.')
+		else if (*format == '.')
 			tab->dot = 1;
-		if (ft_isdigit(*format) && tab->dot)
+		else if (ft_isdigit(*format) && tab->dot)
 			tab->prc = (tab->prc * 10) + (*format - 48);
-		if (ft_isdigit(*format) && !tab->dot)
+		else if (ft_isdigit(*format) && !tab->dot)
 			tab->width = (tab->width * 10) + (*format - 48);
 		++format;
 	}
@@ -98,3 +98,4 @@ int	ft_printf(const char *format, ...)
 	va_end(tab->ap);
 	return (tab->len);
 }
+

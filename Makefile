@@ -4,20 +4,29 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c print_str.c print_hex.c print_nbr.c
+MAN_DIR = Mandatory
 
-OBJS = ${SRCS:.c=.o}
+SRCS = ft_printf.c print_spec.c
 
-.PHONY: all clean fclean re
+OBJS = ${SRCS:%.c=$(MAN_DIR)/%.o}
+
+BONUS_DIR = Bonus
+
+BSRCS = ft_printf_bonus.c print_str.c print_hex.c print_nbr.c
+
+BOBJS = ${BSRCS:%.c=$(BONUS_DIR)/%.o}
+
+.PHONY: clean
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) rcs $@ $?
 
-bonus: all
+bonus: $(BOBJS)
+	$(AR) rcs $(NAME) $?
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BOBJS)
 
 fclean: clean
 	rm -f $(NAME)
