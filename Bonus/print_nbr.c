@@ -6,7 +6,7 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 06:13:03 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 22:39:42 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/23 08:35:02 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_nbrlen(long n, t_printf *tab)
 {
 	int	nbrlen;
 
-	nbrlen = n <= 0;
+	nbrlen = (n <= 0);
 	if (n >= 0 && tab->plus && tab->spec != 'u')
 		nbrlen += 1;
 	while (n)
@@ -73,7 +73,7 @@ void	ft_print_nbr(long n, t_printf *tab)
 		tab->zero = 0;
 	if (sign)
 		tab->space = 0;
-	if ((tab->prc > (len - sign)))
+	if (tab->prc > len - sign)
 		tab->prc -= (len - sign);
 	else
 		tab->prc = 0;
@@ -92,7 +92,7 @@ void	ft_check_nbr(char *nbr, int len, int sign, t_printf *tab)
 		ft_putchar(' ', tab->space, tab);
 		ft_putstr(nbr, sign, tab);
 		ft_putchar('0', tab->prc, tab);
-		ft_putstr(nbr + sign, len - sign, tab);
+		ft_putstr(nbr + sign, (len - sign), tab);
 		ft_putchar(' ', tab->width, tab);
 	}
 	if (!tab->minus)
@@ -104,6 +104,6 @@ void	ft_check_nbr(char *nbr, int len, int sign, t_printf *tab)
 		if (tab->zero)
 			ft_putchar('0', tab->width, tab);
 		ft_putchar('0', tab->prc, tab);
-		ft_putstr(nbr + sign, len - sign, tab);
+		ft_putstr(nbr + sign, (len - sign), tab);
 	}
 }

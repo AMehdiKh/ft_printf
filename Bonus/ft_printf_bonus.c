@@ -6,7 +6,7 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:47:09 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/23 06:23:23 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/23 08:36:19 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ const char	*ft_check_flag(const char *format, t_printf *tab)
 	ft_init_tab(tab);
 	while (!ft_strchr("Xxpdscui%", *format) && *format)
 	{
-		if (*format == '0' && !tab->width && !tab->dot)
-			tab->zero = 1;
-		else if (*format == ' ')
+		if (*format == ' ')
 			tab->space = 1;
 		else if (*format == '-')
 			tab->minus = 1;
@@ -73,6 +71,8 @@ const char	*ft_check_flag(const char *format, t_printf *tab)
 			tab->hash = 2;
 		else if (*format == '.')
 			tab->dot = 1;
+		else if (*format == '0' && !tab->width && !tab->dot)
+			tab->zero = 1;
 		else if (ft_isdigit(*format) && tab->dot)
 			tab->prc = (tab->prc * 10) + (*format - 48);
 		else if (ft_isdigit(*format) && !tab->dot)
@@ -98,4 +98,3 @@ int	ft_printf(const char *format, ...)
 	va_end(tab->ap);
 	return (tab->len);
 }
-

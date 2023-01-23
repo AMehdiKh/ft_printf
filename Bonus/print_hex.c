@@ -6,7 +6,7 @@
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:33:01 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/22 22:39:38 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/23 08:32:43 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_hexlen(unsigned long n, t_printf *tab)
 {
 	int	hexlen;
 
-	hexlen = n == 0;
+	hexlen = (n == 0);
 	if (tab->hash && (tab->spec != 'p') && n)
 		hexlen += 2;
 	while (n)
