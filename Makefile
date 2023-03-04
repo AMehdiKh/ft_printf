@@ -2,31 +2,25 @@ NAME = libftprintf.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -c
 
-MAN_DIR = Mandatory
+SRCS = ft_printf.c print_str.c print_hex.c print_nbr.c
 
-SRCS = ft_printf.c print_spec.c
-
-OBJS = ${SRCS:%.c=$(MAN_DIR)/%.o}
-
-BONUS_DIR = Bonus
-
-BSRCS = ft_printf_bonus.c print_str.c print_hex.c print_nbr.c
-
-BOBJS = ${BSRCS:%.c=$(BONUS_DIR)/%.o}
+OBJS = ${SRCS:.c=.o}
 
 .PHONY: clean
 all: $(NAME)
 
+bonus: $(NAME)
+
 $(NAME): $(OBJS)
 	$(AR) rcs $@ $?
 
-bonus: $(BOBJS)
-	$(AR) rcs $(NAME) $?
+%.o: %.c ft_printf.h
+	$(CC) $(CFLAGS) $<
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

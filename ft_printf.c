@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-khel <ael-khel@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:47:09 by ael-khel          #+#    #+#             */
-/*   Updated: 2023/01/23 08:36:19 by ael-khel         ###   ########.fr       */
+/*   Updated: 2023/01/28 21:27:42 by ael-khel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int	ft_strchr(const char *s, int c)
 {
@@ -79,7 +79,9 @@ const char	*ft_check_flag(const char *format, t_printf *tab)
 			tab->width = (tab->width * 10) + (*format - 48);
 		++format;
 	}
-	return (ft_check_spec(format, tab));
+	if (*format)
+		return (ft_check_spec(format, tab));
+	return (format);
 }
 
 int	ft_printf(const char *format, ...)
